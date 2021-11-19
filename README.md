@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Практическая часть, курс ReactJS (geekbrainds.ru)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### [Урок 1. Введение в ReactJS современный Javascript](https://github.com/Loovery/geekbrains-react/pull/1/files)
 
-## Available Scripts
+1. Установить node и npm.
+2. Создать проект и настроить package.json.
+3. Настроить webpack.config.
+4. Сделать при помощи webpack сборку простейшего React-кода с использованием функционального компонента сообщения
+5. Выдать html-файл, в который подключается сборка при помощи webpack-dev-server.
+6. Реализовать возможность отправки нового сообщения с фиксированным текстом:
+    - добавить кнопку;
+    - обрабатывать нажатие на кнопку функцией, которая добавляет в массив сообщений новое — например, с текстом «Нормально».
+    - функция-обработчик также должна делать перерендер DOM’а, чтобы новое сообщение не просто добавилось в массив, но и появилось у пользователя на странице.
 
-In the project directory, you can run:
+#### [Урок 2. Настройка среды разработки](https://github.com/Loovery/geekbrains-react/pull/2/files)
 
-### `yarn start`
+1. Создать в папке components два компонента: MessageField и Message. Причем компоненты Message должны быть вложены в MessageField.
+2. Реализовать отправку сообщений по нажатию кнопки.
+3. На каждое отправленное сообщение должен отвечать робот (используйте componentDidUpdate).
+4. Добавить автора к сообщениям и отображать его в интерфейсе. Переделать логику ответа от робота в соответствии с этим.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### [Урок 3. Продолжаем погружение в React и подключаем UI-библиотеку](https://github.com/Loovery/geekbrains-react/pull/3/files)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Сверстать мессенджер, выделив явно поле для сообщений и визуально разделив сообщения от пользователя и ответы робота.
+2. Добавить возможность ввода текста сообщения и его отправки:
+   сообщение должно отправляться либо по нажатию кнопки в интерфейсе, либо по нажатию Enter на клавиатуре;
+   поле ввода должно очищаться при отправке сообщения.
+3. Подключить Material-UI и сделать с его помощью верстку поля ввода, кнопки отправки сообщения.
+4. Создать новые компоненты: Layout, ChatList и Header.
+    - Layout должен быть вверху приложения (подключаться в index.jsx), а ChatList, Header и MessageField внутри него;
+    - Header должен быть вверху Layout и занимать всю ширину;
+    - ChatList и MessageField должны быть расположены рядом друг с другом ниже Header так, чтобы Message Field занимал большую часть (например, 30 % на 70 %);
+    - ChatList должен только визуально отражать список из 3–5 чатов (назовите их как угодно) и пока не несет никакой функциональности. Переключение между чатами реализовывать не нужно;
+    - Для верстки ChatList использовать List из Material-UI.
+5. Исправить баг, который возникает, если отправить сообщение и, не дожидаясь ответа от робота, начать печатать что-то в поле ввода.
 
-### `yarn test`
+#### [Урок 4. Роутинг в React: разбиваем мессенджер на чаты](https://github.com/Loovery/geekbrains-react/pull/4/files)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Подключить BrowserRouter (из react-router-dom).
+2. Создать верхний компонент Router со Switch и Route’ами.
+3. Разбить приложение на чаты с помощью роутера (URLs: /chat/<chat_id>/).
+4. Реализовать хранение сообщений в словаре с id в качестве ключа.
+5. Реализовать хранение чатов в словаре с id в качестве ключа, а в качестве значения со словарем из названия чата и списка id-шников сообщений из этого чата.
+6. Сделать страницу профиля, располагающуюся по пути /profile/, и ссылку на нее в Header’е мессенджера.
+7. Реализовать добавление новых чатов в мессенджер. Для этого нужно связать воедино чаты, хранящиеся в state MessageField, и чаты, отрисовывающиеся в ChatList.
 
-### `yarn build`
+#### [Урок 5. Redux. Управление состоянием приложения](https://github.com/Loovery/geekbrains-react/pull/5/files)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Подключить Redux.
+2. Установить и подключить Redux DevTools Extension.
+3. Перенести в Redux чаты.
+4. Перенести в Redux сообщения.
+5. Перенести в Redux данные профиля и отображать имя (или любую другую информацию из профиля) в Header’е мессенджера.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### [Урок 6. Когда нужно использовать Redux middlewares. Реализация ответа от робота при помощи middlewares. ConnectedRouter. Хранение истории сообщений при помощи redux-persist.](https://github.com/Loovery/geekbrains-react/pull/6/files)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Подключить middlewares.
+2. Создать messageMiddleware и перенести туда логику ответа от робота.
+3. Сделать с помощью middleware мигание (подсвечивание в списке на короткое время) чата, в который пришло сообщение от робота.
+4. Подключить Router к Redux и перевести переходы между чатами с <Link> на push().
+5. Подключить redux-persist и сохранять с его помощью чаты и сообщения.
+6. Реализовать возможность удаления чатов и сообщений.
 
-### `yarn eject`
+#### [Урок 7. Работа с API](https://github.com/Loovery/geekbrains-react/pull/7/files)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Подключить redux-api-middleware.
+2. Организовать загрузку чатов и сообщений через API.
+3. Проводить выделение сущностей (чатов и сообщений) с помощью normalizr.
+4. Загружать данные профиля через API.
